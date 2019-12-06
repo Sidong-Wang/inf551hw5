@@ -29,12 +29,9 @@ def main(argv):
                 .reduceByKey(count)
 
 
-    output1 = rdd1.collect()
-    output2 = rdd2.collect()
-    rdd3= sc.parallelize([a[0] for a in output1]).distinct()
-    rdd4 = sc.parallelize([a[0] for a in output2]).distinct()
-    output = rdd3.subtract(rdd4).collect()
-    print(output)
+
+
+    output = rdd1.subtractByKey(rdd2).collect()
 
 
 
@@ -43,7 +40,7 @@ def main(argv):
         out.write('Drinker\n')
         for i in output:
 
-            out.write(i+'\n')
+            out.write(i[0]+'\n')
 
 
 if __name__ == '__main__':
