@@ -13,6 +13,7 @@ def map(res):
         return (line[0], float(1))
     if int(line[2])>5 and re.match(pattern, line[1]):
         return (line[0], float(-1))
+    return (line[0], float(0))
 
 def count(a,b):
     if a<0 or b<0:
@@ -34,8 +35,8 @@ def main(argv):
 
     with open(argv[2], 'w') as out:
         for i in output:
-
-            out.write('%s, %s' % (v[0], v[1]))
+            if v[1]>0:
+                out.write('%s, %s' % (v[0], v[1]))
 
 
 if __name__ == '__main__':
