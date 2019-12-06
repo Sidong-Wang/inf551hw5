@@ -9,7 +9,7 @@ def map(res):
     line = res.split(',')
 
 
-    return (line[0], (line[2],1))
+    return (line[0], (int(line[2]),1))
 
 def count(a,b):
 
