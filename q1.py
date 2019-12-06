@@ -34,9 +34,8 @@ def main(argv):
 
     with open(argv[2], 'w') as out:
         for i in output:
-            print(i)
             if i[1]>0:
-                out.write('%s, %s' % (v[0], v[1]))
+                out.write('%s, %s' % (i[0], i[1]))
 
 
 if __name__ == '__main__':
