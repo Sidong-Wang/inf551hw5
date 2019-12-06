@@ -9,7 +9,7 @@ def map(res):
     line = res.split(',')
     pattern = 'Bud.*'
     if int(line[2])<=5 and re.match(pattern, line[1]):
-        return (line[0], flout(1))
+        return (line[0], float(1))
     if int(line[2])>5 and re.match(pattern, line[1]):
         return (line[0], float(-1))
 
