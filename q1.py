@@ -6,6 +6,7 @@ import sys
 import re
 
 def map(res):
+    print(res)
     line = res.split(',')
     pattern = 'Bud.*'
     if int(line[2])<=5 and re.match(pattern, line[1]):
@@ -14,8 +15,8 @@ def map(res):
         return (line[0], float(-1))
 
 def count(a,b):
-    #if a<0 or b<0:
-     #   return -1
+    if a<0 or b<0:
+        return -1
     return a+b
 
 
