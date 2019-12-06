@@ -9,7 +9,7 @@ def map(res):
     line = res.split(',')
 
 
-    return (line[0],1)
+    return (line[0],line[1])
 
 def count(a,b):
 
@@ -20,18 +20,21 @@ def count(a,b):
 def main(argv):
     sc = SparkContext(appName="hw5")
 
-    freq = sc.textFile(argv[1])
+    freq = sc.textFile(argv[2])
     likes = sc.textFile(argv[1])
-
-    rdd1 = freq.map(map)\
-                .reduceByKey(count)
-    rdd2 = likes.map(map)\
-                .reduceByKey(count)
+    sells = sc.textFile(argv[3])
 
 
+    rddf = freq.map(map)
+    rddl = likes.map(map)
+    rddfl = rddf.join(rddl)
+    outputs = sells.map(map).collect()
 
 
-    output = rdd1.subtractByKey(rdd2).collect()
+
+
+
+    output = rddfl.collect()
 
 
 
@@ -39,8 +42,8 @@ def main(argv):
     with open(argv[4], 'w') as out:
         out.write('Drinker\tBeer\n')
         for i in output:
-
-            out.write(i[0]+'\n')
+            if(i[1] in outputs)
+                out.write(i[0]+'\t'+i[1][1]+'\n')
 
 
 if __name__ == '__main__':
