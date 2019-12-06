@@ -21,7 +21,7 @@ def main(argv):
     sc = SparkContext(appName="hw5")
 
     freq = sc.textFile(argv[1])
-    likes = sc.textFile(argv[2])
+    likes = sc.textFile(argv[1])
 
     rdd1 = freq.map(map)\
                 .reduceByKey(count)
@@ -29,21 +29,18 @@ def main(argv):
                 .reduceByKey(count)
 
 
-    output1 = rdd1.collect()
-    output2 = rdd2.collect()
-    rdd3= sc.parallelize([a[0] for a in output1]).distinct()
-    rdd4 = sc.parallelize([a[0] for a in output2]).distinct()
-    output = rdd3.subtract(rdd4).collect()
-    
+
+
+    output = rdd1.subtractByKey(rdd2).collect()
 
 
 
 
-    with open(argv[3], 'w') as out:
-        out.write('Drinker\n')
+    with open(argv[4], 'w') as out:
+        out.write('Drinker\tBeer\n')
         for i in output:
 
-            out.write(i+'\n')
+            out.write(i[0]+'\n')
 
 
 if __name__ == '__main__':
