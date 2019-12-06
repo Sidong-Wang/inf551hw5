@@ -31,7 +31,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class Count {
+public class count {
 
     public static class TokenizerMapper
             extends Mapper<Object, Text, Text, IntWritable>{
@@ -45,7 +45,7 @@ public class Count {
             String data = value.toString();
             String[] words = data.split(",");
             String pattern = "bud.*";
-            if(Pattern.matches(pattern,words[1]) && words[2] <= 5){
+            if(Pattern.matches(pattern,words[1]) && Integer.parseInt(words[2]) <= 5){
                 word.set(words[0]);
                 context.write(word, one);
             }
