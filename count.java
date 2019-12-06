@@ -37,6 +37,7 @@ public class count {
             extends Mapper<Object, Text, Text, IntWritable>{
 
         private final static IntWritable one = new IntWritable(1);
+        private final static IntWritable minusone = new IntWritable(-1);
 
         private Text word = new Text();
 
@@ -49,6 +50,10 @@ public class count {
                 word.set(words[0]);
                 context.write(word, one);
             }
+            if(Pattern.matches(pattern,words[1]) && Integer.parseInt(words[2]) > 5){
+                word.set(words[0]);
+                context.write(word, minusone);
+            }
         }
     }
 
@@ -60,11 +65,18 @@ public class count {
                            Context context
         ) throws IOException, InterruptedException {
             int sum = 0;
+            boolean off = false;
             for (IntWritable val : values) {
+                if(val.get()<0){
+                    off = true;
+                    break;
+                }
                 sum += val.get();
             }
-            result.set(sum);
-            context.write(key, result);
+            if(!off) {
+                result.set(sum);
+                context.write(key, result);
+            }
         }
     }
 
