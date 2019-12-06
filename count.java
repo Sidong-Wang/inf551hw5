@@ -44,7 +44,7 @@ public class count {
         ) throws IOException, InterruptedException {
             String data = value.toString();
             String[] words = data.split(",");
-            String pattern = "bud.*";
+            String pattern = "Bud.*";
             if(Pattern.matches(pattern,words[1]) && Integer.parseInt(words[2]) <= 5){
                 word.set(words[0]);
                 context.write(word, one);
