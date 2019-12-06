@@ -41,9 +41,11 @@ def main(argv):
 
     with open(argv[4], 'w') as out:
         out.write('Drinker\tBeer\n')
+        r = []
         for i in output:
-            if(i[1] in outputs):
+            if(i[1] in outputs and (i[0],i[1][1]) not in r):
                 out.write(i[0]+'\t'+i[1][1]+'\n')
+                r.append((i[0],i[1][1]))
 
 
 if __name__ == '__main__':
