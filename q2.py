@@ -9,11 +9,11 @@ def map(res):
     line = res.split(',')
 
 
-    return (line[0], [int(line[2]),1])
+    return (line[0], (line[2],1))
 
 def count(a,b):
 
-    return (a[0]+b[0])/(a[1]+b[1])
+    return (str(int(a[0])+int(b[0])),a[1]+b[1])
 
 
 
@@ -31,7 +31,7 @@ def main(argv):
     with open(argv[2], 'w') as out:
         for i in output:
 
-            out.write('%s,\t%s\n' % (i[0], i[1]))
+            out.write('%s,\t%s\n' % (i[0], int(i[1][0])/i[1][1]))
 
 
 if __name__ == '__main__':
