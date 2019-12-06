@@ -42,7 +42,7 @@ def main(argv):
     with open(argv[4], 'w') as out:
         out.write('Drinker\tBeer\n')
         for i in output:
-            if(i[1] in outputs)
+            if(i[1] in outputs):
                 out.write(i[0]+'\t'+i[1][1]+'\n')
 
 
