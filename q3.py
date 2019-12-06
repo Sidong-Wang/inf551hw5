@@ -34,6 +34,7 @@ def main(argv):
     rdd3= sc.parallelize([a[0] for a in output1]).distinct()
     rdd4 = sc.parallelize([a[0] for a in output2]).distinct()
     output = rdd3.subtract(rdd4).collect()
+    print(output)
 
 
 
