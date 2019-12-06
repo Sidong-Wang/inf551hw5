@@ -76,7 +76,7 @@ public class count {
             System.exit(2);
         }
         Job job = Job.getInstance(conf, "count");
-        job.setJarByClass(Count.class);
+        job.setJarByClass(count.class);
         job.setMapperClass(TokenizerMapper.class);
         job.setCombinerClass(IntSumReducer.class);
         job.setReducerClass(IntSumReducer.class);
