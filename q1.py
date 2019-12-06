@@ -6,7 +6,6 @@ import sys
 import re
 
 def map(res):
-    print(res)
     line = res.split(',')
     pattern = 'Bud.*'
     if int(line[2])<=5 and re.match(pattern, line[1]):
@@ -35,7 +34,7 @@ def main(argv):
 
     with open(argv[2], 'w') as out:
         for i in output:
-            if v[1]>0:
+            if i[1]>0:
                 out.write('%s, %s' % (v[0], v[1]))
 
 
